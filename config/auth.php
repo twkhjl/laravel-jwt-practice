@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
@@ -13,13 +13,13 @@ return [
     |
     */
 
-    'defaults' => [
-        // 'guard' => 'web',
-        'guard' => 'api',
-        'passwords' => 'users',
-    ],
+  'defaults' => [
+    // 'guard' => 'web',
+    'guard' => 'api',
+    'passwords' => 'users',
+  ],
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
@@ -36,21 +36,33 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-
-        'api' => [
-            'driver' => 'jwt',
-            // 'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+  'guards' => [
+    'web' => [
+      'driver' => 'session',
+      'provider' => 'users',
     ],
 
-    /*
+    'api' => [
+      'driver' => 'jwt',
+      // 'driver' => 'token',
+      'provider' => 'users',
+      'hash' => false,
+    ],
+    'user' => [
+      'driver' => 'jwt',
+      // 'driver' => 'token',
+      'provider' => 'users',
+      'hash' => false,
+    ],
+    'employee' => [
+      'driver' => 'jwt',
+      // 'driver' => 'token',
+      'provider' => 'employees',
+      'hash' => false,
+    ],
+  ],
+
+  /*
     |--------------------------------------------------------------------------
     | User Providers
     |--------------------------------------------------------------------------
@@ -67,19 +79,23 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+  'providers' => [
+    'users' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\User::class,
+    ],
+    'employees' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\Employee::class,
     ],
 
-    /*
+    // 'users' => [
+    //     'driver' => 'database',
+    //     'table' => 'users',
+    // ],
+  ],
+
+  /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
@@ -94,16 +110,16 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+  'passwords' => [
+    'users' => [
+      'provider' => 'users',
+      'table' => 'password_resets',
+      'expire' => 60,
+      'throttle' => 60,
     ],
+  ],
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
     |--------------------------------------------------------------------------
@@ -114,6 +130,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+  'password_timeout' => 10800,
 
 ];
